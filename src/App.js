@@ -1,36 +1,39 @@
+
 import './App.css';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
-import { CompCreateUser } from './deportes/Crearusuarios.jsx'
-import { CompShowUsers } from './deportes/Mostrarusuarios.jsx'
-import { CompEditUser } from './deportes/Editarusuario.jsx'
-import { CompCreateEvento } from './deportes/CrearEventos.jsx'
-import {CompMostrarEvento} from './deportes/Mostrareventos.jsx'
-import {CompEditEvento} from './deportes/EditarEvento.jsx'
+import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
+import { CompShowUsers } from './deportes/MostrarUsuarios.jsx'
+import { CompCreateUser } from './deportes/CrearUsuarios.jsx'
+import { CompEditUser } from './deportes/EditUsuarios.jsx'
+import { CompShowEventos } from './deportes/MostrarEventos.jsx'
+import {CompCrearEvento} from './deportes/CrearEventos.jsx'
+import {CompEditEvento} from './deportes/EditarEventos.jsx'
 import {Logo} from './deportes/Logo.jsx'
-import 'bootstrap/dist/css/bootstrap.min.css';
-import {NavBarComp} from './deportes/NavbarComp'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import {NavbarComp} from './deportes/NavbarComp.jsx'
+import {Login} from './deportes/Login.jsx'
 function App() {
   return (
     <div className="App">
       <header className="App-header">
         <Logo />
-              
+        
+       
       </header>
-
       <BrowserRouter>
-                      <Routes>
-                               <Route path="/" element= {<NavBarComp />} >
-                                      <Route path='/create' element={ <CompCreateUser />} />
-                                      <Route path='/users' element ={ <CompShowUsers />} />
-                                      <Route path='/edit/:id' element= {<CompEditUser />} />
-                                      <Route path='/regevento' element= { <CompCreateEvento />} />
-                                      <Route path='/shevento' element = { <CompMostrarEvento />} />
-                                      <Route path='/editevento/:_id' element = {<CompEditEvento />} />
-                                      <Route path='*' element={ <Navigate replace to="/"/> }/>
-                               </Route> 
-                      </Routes>
-      
-      </BrowserRouter>
+                     <Routes>
+                     <Route path='/' element={ <NavbarComp />} >      
+                              <Route path='/users' element={ <CompShowUsers />} />
+                              <Route path='/create' element={ <CompCreateUser />} />  
+                              <Route path= '/edit/:_id' element ={ <CompEditUser />} />  
+                              <Route path= '/sheventos' element = {<CompShowEventos />} />
+                              <Route path= '/regevento' element = {<CompCrearEvento />} />
+                              <Route path= '/editevento/:_id' element = { <CompEditEvento />} />
+                              <Route path= '/login' element = { <Login />} />
+                              <Route path='*' element={ <Navigate replace to="/"/> }/>
+                    </Route>
+                    </Routes>
+     </BrowserRouter>
+
     </div>
   );
 }

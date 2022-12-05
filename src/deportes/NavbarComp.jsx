@@ -3,51 +3,52 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import {Link, Outlet} from 'react-router-dom';
+import {Principal} from './Presentacion.jsx'
 
-export const NavBarComp = () => {
 
-    return(
-    <>
-<Navbar collapseOnSelect expand="lg" bg="light" variant="light">
+export const NavbarComp = () => {
+
+return (
+  
+ <>  
+  <Navbar className="navBg" expand="lg" variant="dark" >
       <Container>
-        <Navbar.Brand as = {Link} to = {"/"}> MARCADORES DEPORTIVOS - MUNDIAL DE QATAR </Navbar.Brand>
+        <Navbar.Brand href="#home">Qatar 2022</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link as = {Link} to = {"/login"}>LOGIN</Nav.Link>
-            <Nav.Link as = {Link} to = {"/create"}>LOGIN UP</Nav.Link>
-            <NavDropdown title="EVENTOS DEPORTIVOS" id="collasible-nav-dropdown">
-              <NavDropdown.Item as = {Link} to = {"/regevento"}>CREAR</NavDropdown.Item>
-              <NavDropdown.Item as = {Link} to = {"/shevento"}>
-                MOSTRAR EVENTOS
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
-                Separated link
+            <Nav.Link as = {Link} to={'/sheventos'}>Mostrar Eventos</Nav.Link>
+            <Nav.Link as = {Link} to={`/regevento`}>Registrar Evento</Nav.Link>
+            <NavDropdown title="Usuarios" id="collasible-nav-dropdown">
+              <NavDropdown.Item as={Link} to={"/create"}>Registrar</NavDropdown.Item>
+              <NavDropdown.Item as = {Link} to={"/users"} > Mostrar </NavDropdown.Item>
+             <NavDropdown.Divider />
+              <NavDropdown.Item as={Link} to={"/login"} href="#ed" >
+                Login
               </NavDropdown.Item>
             </NavDropdown>
           </Nav>
           <Nav>
-            <Nav.Link href="#deets">USUARIOS</Nav.Link>
+            <Nav.Link as={Link} to={"/editevento/:_id"} >Editar Evento</Nav.Link>
             <Nav.Link eventKey={2} href="#memes">
-              HELP
+             About
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
     </Navbar>
     <section>
-        <Outlet>
+          <Outlet>
 
-        </Outlet>
-    </section>
-
-    </>
-
-    )
+          </Outlet>
+  </section>
+  </>  
 
 
-}
 
-export default NavBarComp
+
+
+)}
+
+
+export default NavbarComp 
