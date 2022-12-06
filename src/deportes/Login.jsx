@@ -1,33 +1,13 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
-import Swal from 'sweetalert';
-import Button from 'react-bootstrap/Button';
+import axios from 'axios'
+import { useState, useEffect } from 'react'
+import { useNavigate, Link } from 'react-router-dom'
 import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import Swal from 'sweetalert'
 import Card from 'react-bootstrap/Card';
-//import styles from "./styles.module.css";
 
-
-
+//aca inicia
 export const Login = () => {
-
-    useEffect ( ()=>{
-       //mostraralert()
-        },[])
-
-        const mostraralert = () => {
-            Swal.fire({
-                title: 'Su correo y contraseña son correctos',
-                text: 'Ud desea continuar',
-                icon: 'warning',
-                showDenyButton: "NO",
-                confirmButtonText: "SI",
-                
-               
-              })
-        }
-
-
     const [body, setBody] = useState({ correo: '', password: '' })
     const navigate  = useNavigate()
    // const classes = useStyles()
@@ -41,6 +21,11 @@ export const Login = () => {
     }
 
 
+    
+ //************* */
+ const mostraralerta = () => {
+  Swal.fire ("Mensaje Simple")
+ }
     //********** */
        const onSubmit = async (e) => {
         e.preventDefault();
@@ -49,29 +34,26 @@ export const Login = () => {
             let axiosConfig = {
                 headers: {
                     'Content-Type': 'application/json;charset=UTF-8',
-                    "Access-Control-Allow-Origin": "*",
                     
+                    "Access-Control-Allow-Origin": "*",
                 }
               };
             const URI = 'http://localhost:8000/usuarios/login'
         console.log("paso por aca")
+        console.log (axiosConfig);
         const resp = await axios.post(URI, body, axiosConfig );
-        mostraralert()
     let s = JSON.stringify(resp?.data);
+    console.log ("este es mi Token arr ",s);
 
-            let union1 = s.split(":")[2];
-  
-             let r = union1.substring(1, union1.length-3);
-                  console.log('Este es el JWT:',r);
-                 localStorage.setItem('auth',r)
-                if (mostraralert)
-                {
-                 navigate('/sheventos')
-                 window.location = '/sheventos'
-                }
-
-
-                
+       let union1 = s.split(":")[2];
+    
+       let r = union1.substring(1, union1.length-3);
+            console.log('Este es el JWT:',r);
+           localStorage.setItem('auth',r)
+            navigate('/shevento')
+              window.location = '/shevento'
+           
+               
             
         }
         catch(error)  {
@@ -82,51 +64,53 @@ export const Login = () => {
             }
         }
  
+//************* */
 
-	return (
-		
-        <div className="login-form" >
-       <h3>Login</h3>
-        <Card>
-      <Card.Body>
+    return (
      
-        <Card>
-      <Card.Body>
-      
-         
-         <Form >
-         <Form.Group className="mb-3" controlId="formBasicEmail">
-             <Form.Control
-               
-                 autoFocus
-                 type= "text"
-                 placeholder = "Correo"
-                 value= {body.correo}
-                 onChange= { inputChange }
-                 name= "correo"
-             />
-           </Form.Group>
-           <Form.Group className="mb-3" controlId="formBasicPassword">
-             <Form.Control type="password"
-                 placeholder = "Password"
-                 value={body.password}
-                 onChange={inputChange}
-                 name="password"
-             />
-             </Form.Group>
-             <Button variant="secondary" onClick={onSubmit} type="submit" >
-                 Sign In
-             </Button>&nbsp;&nbsp;&nbsp;&nbsp;
-            <Button as="a" variant="warning"> <Link to="/create" >Sign Up</Link> </Button>
             
-         </Form>
-         </Card.Body>
-         </Card>
-         </Card.Body>
-    </Card>
-     </div>
-
-	);
-};
+                <div className="login-form">
+                   
+                   <div className="login-form">
+                   <Card style={{ width: '40rem' }}>
+                    <Card.Body>
+                    <h3 className="login-form" >Usuarios Registrados</h3>
+                    <Form >
+                    <Form.Label>Ingrese su correo</Form.Label>
+                        <div className="login-form">
+                        <Form.Control 
+                          
+                            autoFocus
+                            type= "text"
+                            placeholder = "Correo"
+                            value= {body.correo}
+                            onChange= { inputChange }
+                            name= "correo"
+                        />
+                        </div>
+                        <Form.Label>Ingrese su password</Form.Label>
+                        <div className="login-form">
+                        <Form.Control  type="password"
+                            placeholder = "Password"
+                            value={body.password}
+                            onChange={inputChange}
+                            name="password"
+                        />
+                        </div>
+                        <Button variant="primary" className="btn-register" onClick={onSubmit} type="submit" >
+                            Sign In
+                        </Button>
+                        <Button variant="danger">
+                        <Link to="/create" className='btn-register'>Sign Up</Link> </Button>
+                    </Form>
+                    </Card.Body>
+                  </Card>
+                    </div> 
+                  
+                </div>
+          
+      
+    )
+}
 
 export default Login;
