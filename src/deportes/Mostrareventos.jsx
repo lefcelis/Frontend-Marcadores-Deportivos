@@ -4,7 +4,7 @@ import {useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
 import Table from 'react-bootstrap/Table';
 import { FaTrashAlt,FaPencilAlt,FaRegEdit } from 'react-icons/fa';
-import Swal from 'sweetalert';
+import Swal from 'sweetalert2';
 
 //importar nuestras rutas del backend
 //importar los eventos deportivos

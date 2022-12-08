@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import Swal from 'sweetalert'
+import Swal from 'sweetalert2'
 import Card from 'react-bootstrap/Card';
 
 //aca inicia
